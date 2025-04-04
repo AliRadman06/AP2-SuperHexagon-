@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap2superhexagon.MainMenuController">
+   <children>
+      <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../Images/Untitled-2.png" />
+         </image>
+      </ImageView>
+
+      <VBox alignment="CENTER" layoutX="699.0" layoutY="33.0" prefWidth="294.0" spacing="20.0" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="33.0">
+         <children>
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButton" prefHeight="104.0" prefWidth="294.0" style="-fx-background-radius: 30; -fx-background-color: WHITE;" text="Start" textAlignment="CENTER">
+               <font>
+                  <Font name="Algerian" size="50.0" />
+               </font>
+            </Button>
+            <Button fx:id="historyButton" mnemonicParsing="false" onAction="#handleHistoryButton" prefHeight="104.0" prefWidth="294.0" style="-fx-background-radius: 30; -fx-background-color: WHITE;" text="History" textAlignment="CENTER">
+               <font>
+                  <Font name="Algerian" size="50.0" />
+               </font>
+            </Button>
+            <Button fx:id="settingButton" mnemonicParsing="false" onAction="#handleSettingButton" prefHeight="104.0" prefWidth="294.0" style="-fx-background-radius: 30; -fx-background-color: WHITE;" text="Setting" textAlignment="CENTER">
+               <font>
+                  <Font name="Algerian" size="50.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="104.0" prefWidth="294.0" style="-fx-background-radius: 30; -fx-background-color: WHITE;" text="Exit" textAlignment="CENTER">
+               <font>
+                  <Font name="Algerian" size="50.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+         </padding>
+      </VBox>
+
+      <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="506.0" spacing="2.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0">
+         <children>
+            <Label text="Best Record" textFill="WHITE">
+               <font>
+                  <Font name="Algerian" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="bestRecordLabel" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Algerian" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
