@@ -49,6 +49,6 @@ public class MainMenuController {
     private long loadHighScore() {
         // فعلا یک مقدار ثابت برمیگردونیم
         // بعدا باید کد خواندن از فایل رو اینجا بنویسی
-        return 12345; // مثال
+        return 0; // مثال
     }
 }
