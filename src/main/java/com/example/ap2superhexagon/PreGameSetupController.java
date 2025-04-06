@@ -35,9 +35,29 @@ public class PreGameSetupController {
 
         if (playerName.isEmpty()) {
             System.out.println("Start button clicked, but player name is empty!");
-
+            playerNameField.setStyle("-fx-border-color: red; -fx-background-radius: 30; -fx-border-radius: 30;");
         } else {
             System.out.println("Start button clicked! Player name: " + playerName);
+            playerNameField.setStyle("-fx-background-radius: 30;");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/game-view.fxml"));
+                Parent gameRoot = loader.load();
+                Scene gameScene = new Scene(gameRoot, 1024, 576);
+                String cssPath = getClass().getResource("/css/game-style.css").toExternalForm();
+                if (cssPath != null) {
+                    gameScene.getStylesheets().add(cssPath);
+                    System.out.println("Game CSS loaded.");
+                } else {
+                    System.err.println("Could not find game-styles.css!");
+                }
+                Stage stage = (Stage) startButton.getScene().getWindow();
+                stage.setScene(gameScene);
+                stage.show();
+            }
+            catch (Exception e) {
+                System.err.println("Error loading game or CSS: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 
