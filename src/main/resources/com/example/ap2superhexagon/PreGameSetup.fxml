@@ -38,7 +38,7 @@
                </VBox.margin>
             </TextField>
 
-            <Button fx:id="startButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="220.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="START" textAlignment="CENTER">
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButton" prefHeight="65.0" prefWidth="220.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="START" textAlignment="CENTER">
                <font>
                   <Font name="Algerian" size="30.0" />
                </font>
