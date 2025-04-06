@@ -1,0 +1,8 @@
+
+#pauseButton:hover {
+    -fx-opacity: 0.8;
+}
+
+#pauseButton:pressed {
+    -fx-opacity: 0.6;
+}
