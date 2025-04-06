@@ -2,8 +2,13 @@ package com.example.ap2superhexagon;
 
 import javafx.event.ActionEvent; // برای مدیریت رویداد کلیک
 import javafx.fxml.FXML;        // برای اتصال به عناصر FXML
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PreGameSetupController {
 
@@ -38,7 +43,18 @@ public class PreGameSetupController {
 
     @FXML
     void handleBackButton(ActionEvent event) {
-        System.out.println("Back button clicked!");
+        try {
+            System.out.println("Back button clicked!");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/main-menu-view.fxml"));
+            Parent mainMenuRoot = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(mainMenuRoot);
+            stage.setScene(scene);
+            stage.show();
         }
-
+        catch (Exception e) {
+            System.err.println("Failed to load main-menu-view.fxml");
+            e.printStackTrace();
+        }
+    }
 }
