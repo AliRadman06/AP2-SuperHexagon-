@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap2superhexagon.PreGameSetupController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap2superhexagon.PreGameSetupController">
    <children>
       <ImageView fitHeight="576.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -44,7 +44,7 @@
                </font>
             </Button>
 
-            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="220.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="BACK" textAlignment="CENTER">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="65.0" prefWidth="220.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="BACK" textAlignment="CENTER">
                <font>
                   <Font name="Algerian" size="30.0" />
                </font>
