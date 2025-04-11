@@ -12,7 +12,7 @@
     <children>
 
         <!-- Pane اصلی برای قرار دادن عناصر بازی (بازیکن، موانع و غیره) -->
-        <Pane fx:id="gamePane" layoutY="-1.0" prefHeight="576.0" prefWidth="1024.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="-1.0" />
+        <Pane fx:id="gamePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <!-- موقعیت و اندازه gamePane رو میتونی دقیق‌تر تنظیم کنی -->
 
         <!-- بخش امتیاز کاربر -->

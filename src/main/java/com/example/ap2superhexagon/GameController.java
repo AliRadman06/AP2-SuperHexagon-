@@ -5,21 +5,24 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 
 public class GameController {
     @FXML
     private Pane gamePane; // برای قرار دادن عناصر بازی
-
     @FXML
     private Label scoreLabel; // برای نمایش امتیاز فعلی
-
     @FXML
     private Label bestScoreLabel; // برای نمایش بهترین رکورد
-
     @FXML
     private Button pauseButton; // برای دکمه Pause
 
-    // این متد به صورت خودکار بعد از لود شدن FXML اجرا میشه
+    private Polygon centralHexagon;
+    private Polygon playerTriangle;
+    private int currentPlayerSide = 0;
+    private String currentPlayerName;
+
+
     @FXML
     public void initialize() {
         // اینجا میتونی کارهای اولیه رو انجام بدی، مثلا مقدار اولیه امتیازها رو ست کنی
@@ -47,5 +50,30 @@ public class GameController {
         //     // برگردوندن به حالت بازی
         // }
     }
+
+    private Polygon createHexagon(double centerX, double centerY, double radius) {
+        Polygon hexagon = new Polygon();
+        for (int i = 0; i < Constants.SIDES; i++) {
+            double angle = Math.toRadians((360.0 / Constants.SIDES) * i -(90.0 - (180 / Constants.SIDES)));
+            double x = centerX + radius * Math.cos(angle);
+            double y = centerY + radius * Math.sin(angle);
+            hexagon.getPoints().addAll(x, y);
+        }
+        return hexagon;
+    }
+
+
+
+    private Polygon createPlayerTriangle(double size) {
+        Polygon playerTriangle = new Polygon();
+        playerTriangle.getPoints().addAll(
+                0.0, -size * Math.sqrt(3) / 3.0,
+                -size / 2.0, size * Math.sqrt(3) / 6.0,
+                size / 2.0, -size * Math.sqrt(3) / 6.0
+        );
+        return playerTriangle;
+    }
+
+
 
 }
