@@ -24,6 +24,8 @@ public class GameController {
     private Polygon playerTriangle;
     private int currentPlayerSide = 0;
     private String currentPlayerName;
+    private ColorManager colorManager = new ColorManager();
+
 
 
     @FXML
@@ -34,6 +36,8 @@ public class GameController {
         // bestScoreLabel رو هم می‌تونی از جایی بخونی و ست کنی
         // bestScoreLabel.setText(loadBestScore());
         currentPlayerSide = 0;
+
+        createBackgroundSections();
 
         centralHexagon = createHexagon(Constants.CENTER_X, Constants.CENTER_Y, Constants.HEXAGON_RADIUS);
         centralHexagon.setFill(null);
@@ -154,6 +158,68 @@ public class GameController {
 //        updatePlayerTrianglePosition();
 //    }
 
+
+    private void createBackgroundSections() {
+        // دریافت ابعاد Pane برای محاسبه مرکز و شعاع
+        // این مقادیر باید در زمان فراخوانی این متد معتبر باشند
+        // معمولاً بعد از اینکه Stage نمایش داده شده یا با Listener ها
+        double paneWidth = gamePane.getWidth();
+        double paneHeight = gamePane.getHeight();
+
+        // اگر ابعاد هنوز 0 است (مثلاً قبل از نمایش)، از مقادیر پیش‌فرض یا Constants استفاده کنید
+        // یا بهتر است این متد بعد از مشخص شدن ابعاد فراخوانی شود.
+        if (paneWidth <= 0 || paneHeight <= 0) {
+            paneWidth = Constants.SCREEN_WIDTH; // یا مقدار پیش‌فرض دیگر
+            paneHeight = Constants.SCREEN_HEIGHT;
+            System.out.println("Warning: Pane dimensions not available, using defaults for background.");
+        }
+
+
+        double centerX = paneWidth / 2.0;
+        double centerY = paneHeight / 2.0;
+
+        // شعاع بزرگ برای اطمینان از پوشش کامل صفحه
+        // استفاده از قطر یا حداکثر بعد ضربدر یک ضریب اطمینان
+        double radius = 2000; // فاصله مرکز تا گوشه + 10% اضافه
+        // یا: double radius = Math.max(paneWidth, paneHeight) * 1.1;
+        // یا: double radius = 2000; // یک عدد خیلی بزرگ ثابت
+
+
+        // پاک کردن بخش‌های قبلی اگر وجود دارند (برای مواقعی که ممکن است دوباره فراخوانی شود)
+        gamePane.getChildren().removeIf(node -> node.getStyleClass().contains("background-section"));
+
+
+        for (int i = 0; i < 6; i++) {
+            // محاسبه زوایای شروع و پایان هر بخش به رادیان
+            double angle1 = Math.toRadians(i * 60.0); // زاویه شروع
+            double angle2 = Math.toRadians((i + 1) * 60.0); // زاویه پایان
+
+            // محاسبه مختصات نقاط بیرونی
+            double x1 = centerX + radius * Math.cos(angle1);
+            double y1 = centerY + radius * Math.sin(angle1);
+            double x2 = centerX + radius * Math.cos(angle2);
+            double y2 = centerY + radius * Math.sin(angle2);
+
+            // ایجاد Polygon مثلثی شکل
+            Polygon section = new Polygon();
+            section.getPoints().addAll(
+                    centerX, centerY, // راس مرکزی
+                    x1, y1,          // نقطه بیرونی اول
+                    x2, y2           // نقطه بیرونی دوم
+            );
+
+            // تعیین رنگ یکی در میان از ColorManager
+            Color fillColor = (i % 2 == 0) ? colorManager.getBackgroundColor1() : colorManager.getBackgroundColor2();
+            section.setFill(fillColor);
+            section.setStroke(null); // بدون خط دور
+
+            // اضافه کردن کلاس استایل برای شناسایی راحت‌تر بعداً
+            section.getStyleClass().add("background-section");
+
+            // اضافه کردن بخش به Pane (زیر سایر عناصر مانند بازیکن و موانع)
+            gamePane.getChildren().add(0, section); // اضافه کردن در اندیس 0 تا زیر بقیه قرار گیرد
+        }
+    }
 
 
 }
