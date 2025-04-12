@@ -12,10 +12,10 @@ public final class Constants { // 'final' یعنی نمیشه از این کلا
     public static final double CENTER_Y = SCREEN_HEIGHT / 2.0;
 
     // --- مشخصات شش‌ضلعی مرکزی ---
-    public static final double HEXAGON_RADIUS = 80.0; // شعاع شش ضلعی مرکزی
+    public static final double HEXAGON_RADIUS = 60.0; // شعاع شش ضلعی مرکزی
 
     // --- مشخصات بازیکن ---
-    public static final double PLAYER_SIZE = 15.0; // اندازه مثلث بازیکن
+    public static final double PLAYER_SIZE = 20.0; // اندازه مثلث بازیکن
     // فاصله مرکز مثلث بازیکن از مرکز صفحه
     public static final double PLAYER_DISTANCE_FROM_CENTER = HEXAGON_RADIUS + 20.0;
 

@@ -10,6 +10,7 @@ module com.example.ap2superhexagon {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.ap2superhexagon to javafx.fxml;
     exports com.example.ap2superhexagon;
