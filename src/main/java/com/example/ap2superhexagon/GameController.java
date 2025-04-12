@@ -19,7 +19,7 @@ public class GameController {
     private Label bestScoreLabel; // برای نمایش بهترین رکورد
     @FXML
     private Button pauseButton; // برای دکمه Pause
-    private double currentPlayerAngleDegrees = 90.0;
+//    private double currentPlayerAngleDegrees = 90.0;
     private Polygon centralHexagon;
     private Polygon playerTriangle;
     private int currentPlayerSide = 0;
@@ -33,6 +33,7 @@ public class GameController {
         scoreLabel.setText("0"); // مقدار اولیه امتیاز
         // bestScoreLabel رو هم می‌تونی از جایی بخونی و ست کنی
         // bestScoreLabel.setText(loadBestScore());
+        currentPlayerSide = 0;
 
         centralHexagon = createHexagon(Constants.CENTER_X, Constants.CENTER_Y, Constants.HEXAGON_RADIUS);
         centralHexagon.setFill(null);
@@ -94,16 +95,22 @@ public class GameController {
 
     private void updatePlayerTrianglePosition() {
 //        double angle = Math.toRadians((360.0 / Constants.SIDES) * currentPlayerSide + 90);
-        double angleRadians = Math.toRadians(currentPlayerAngleDegrees);
+//        double angleRadians = Math.toRadians(currentPlayerAngleDegrees);
 
-        double playerX = Constants.CENTER_X + Constants.PLAYER_DISTANCE_FROM_CENTER * Math.cos(angleRadians);
-        double playerY = Constants.CENTER_Y + Constants.PLAYER_DISTANCE_FROM_CENTER * Math.sin(angleRadians);
+        double angleStep = 360.0 / Constants.SIDES;
+        double baseAngleDegrees = -90.0;
+        double targetAngleDegrees = baseAngleDegrees + angleStep * currentPlayerSide;
+        double targetAngleRadians = Math.toRadians(targetAngleDegrees);
+
+
+        double playerX = Constants.CENTER_X + Constants.PLAYER_DISTANCE_FROM_CENTER * Math.cos(targetAngleRadians);
+        double playerY = Constants.CENTER_Y + Constants.PLAYER_DISTANCE_FROM_CENTER * Math.sin(targetAngleRadians);
 
         playerTriangle.setTranslateX(playerX);
         playerTriangle.setTranslateY(playerY);
 
-        playerTriangle.setRotate(currentPlayerAngleDegrees + 90);
-        System.out.println("Player moved to angle: " + currentPlayerAngleDegrees); // پیام دیباگ جدید
+        playerTriangle.setRotate(targetAngleDegrees + 90);
+        System.out.println("Moved to Side: " + currentPlayerSide + ", Calculated Angle: " + targetAngleDegrees);
 
     }
 
@@ -111,31 +118,41 @@ public class GameController {
 
     private void handleKeyPress(KeyEvent event) {
         System.out.println("Key pressed: " + event.getCode());
+        boolean moved = false;
+
         if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
-            rotatePlayer(false);
+            currentPlayerSide = (currentPlayerSide - 1 + Constants.SIDES) % Constants.SIDES;
+            moved = true;
+//            rotatePlayer(false);
         }
         else if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
-            rotatePlayer(true);
+            currentPlayerSide = (currentPlayerSide + 1) % Constants.SIDES;
+            moved = true;
+//            rotatePlayer(true);
+        }
+
+        if (moved) {
+            updatePlayerTrianglePosition();
         }
     }
 
-    private void rotatePlayer(boolean clockwise) {
-
-        final double angleStep = 360.0 / Constants.SIDES;
-        if (clockwise) {
-            currentPlayerAngleDegrees -= angleStep;
-        }
-        else {
-            currentPlayerAngleDegrees += angleStep;
-        }
-
-        while (currentPlayerAngleDegrees < 0) {
-            currentPlayerAngleDegrees += 360;
-        }
-        currentPlayerAngleDegrees %= 360;
-
-        updatePlayerTrianglePosition();
-    }
+//    private void rotatePlayer(boolean clockwise) {
+//
+//        final double angleStep = 360.0 / Constants.SIDES;
+//        if (clockwise) {
+//            currentPlayerAngleDegrees -= angleStep;
+//        }
+//        else {
+//            currentPlayerAngleDegrees += angleStep;
+//        }
+//
+//        while (currentPlayerAngleDegrees < 0) {
+//            currentPlayerAngleDegrees += 360;
+//        }
+//        currentPlayerAngleDegrees %= 360;
+//
+//        updatePlayerTrianglePosition();
+//    }
 
 
 
