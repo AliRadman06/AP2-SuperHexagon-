@@ -16,7 +16,7 @@
         <!-- موقعیت و اندازه gamePane رو میتونی دقیق‌تر تنظیم کنی -->
 
         <!-- بخش امتیاز کاربر -->
-        <Label text="Your Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="25.0">
+        <Label fx:id="yourRecordLabel" text="Your Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="25.0">
             <font>
                 <Font name="Algerian" size="23.0" />
             </font>
@@ -28,7 +28,7 @@
         </Label>
 
         <!-- بخش بهترین رکورد -->
-        <Label text="Best Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0">
+        <Label fx:id="bestRecordLabel" text="Best Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0">
             <font>
                 <Font name="Algerian" size="23.0" />
             </font>

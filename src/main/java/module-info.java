@@ -11,6 +11,7 @@ module com.example.ap2superhexagon {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
+    requires com.google.gson;
 
     opens com.example.ap2superhexagon to javafx.fxml;
     exports com.example.ap2superhexagon;

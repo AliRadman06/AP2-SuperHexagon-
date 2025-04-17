@@ -15,15 +15,28 @@ public final class Constants { // 'final' یعنی نمیشه از این کلا
     public static final double HEXAGON_RADIUS = 60.0; // شعاع شش ضلعی مرکزی
 
     // --- مشخصات بازیکن ---
-    public static final double PLAYER_SIZE = 20.0; // اندازه مثلث بازیکن
+    public static final double PLAYER_SIZE = 15.0; // اندازه مثلث بازیکن
+
     // فاصله مرکز مثلث بازیکن از مرکز صفحه
-    public static final double PLAYER_DISTANCE_FROM_CENTER = HEXAGON_RADIUS + 20.0;
+    public static final double PLAYER_DISTANCE_FROM_CENTER = HEXAGON_RADIUS + 10.0;
+
+    public static final int PALETTE_SWITCH_INTERVAL_SECONDS = 5 ;
+    public static final long INITIAL_OBSTACLE_SPAWN_INTERVAL = 5;
+    public static final long INITIAL_OBSTACLE_SPEED = 100;
+    public static final long MIN_GAPS_IN_PATTERN = 10;
 
     // --- ثابت‌های مربوط به چرخش (اگه لازم شد) ---
     public static final int SIDES = 6; // تعداد اضلاع شش ضلعی
 
-    // --- ثابت‌های دیگر بازی (سرعت اولیه، رنگ‌ها و ...) بعدا میتونن اینجا اضافه بشن ---
-    // public static final double INITIAL_GAME_SPEED = 1.0;
-    // public static final javafx.scene.paint.Color PLAYER_COLOR = javafx.scene.paint.Color.CYAN;
-    // public static final javafx.scene.paint.Color HEXAGON_STROKE_COLOR = javafx.scene.paint.Color.WHITE;
+    public static final int SPAWN_DISTANCE = 500;
+    public static final double OBSTACLE_WALL_WIDTH = 15.5;
+
+    public static final double DEFAULT_WALL_WIDTH = 15.0;
+    public static final double REMOVAL_THRESHOLD_RADIUS = 50 - DEFAULT_WALL_WIDTH / 2.0 + 25.0;
+
+    public static final double SPEED_INCREASE_INTERVAL = 1; // هر 10 ثانیه
+    public static final double SPEED_INCREMENT = 2.0;         // افزایش 2 واحدی
+
+    public static final double MIN_OBSTACLE_SPAWN_INTERVAL = 1.2; // پایین‌ترین مقدار مجاز
+    public static final double SPAWN_INTERVAL_DECREMENT = 0.4;   // هر بار اینقدر کم شه
 }

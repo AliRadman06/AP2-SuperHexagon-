@@ -23,9 +23,13 @@ public class MainMenuController {
     // این متد وقتی فایل FXML لود میشه صدا زده میشه
     @FXML
     public void initialize() {
-        // اینجا میتونی مقدار اولیه bestRecordLabel رو از فایل یا جای دیگه بخونی و ست کنی
-        long currentHighScore = loadHighScore(); // متد فرضی
-        bestRecordLabel.setText(String.valueOf(currentHighScore));
+//        // اینجا میتونی مقدار اولیه bestRecordLabel رو از فایل یا جای دیگه بخونی و ست کنی
+//        long currentHighScore = loadHighScore(); // متد فرضی
+//        bestRecordLabel.setText(String.valueOf(currentHighScore));
+
+        long bestMillis = HighScoreManager.loadHighScore();
+        bestRecordLabel.setText(String.format("%.1f", bestMillis / 1000.0) + " s");
+
     }
 
     @FXML
