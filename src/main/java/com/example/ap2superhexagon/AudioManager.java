@@ -70,7 +70,6 @@ public class AudioManager {
     }
 
     public static void playRotateSound() {
-//        playSoundEffect("/audio/sfx/rotate.wav");
     }
 
     public static void playClickSound() {
@@ -95,7 +94,7 @@ public class AudioManager {
     }
 
     private static double getAdjustedVolume(double baseVolume) {
-        return baseVolume * volume; // تطبیق با حجم کلی سیستم
+        return baseVolume * volume;
     }
 
     public static void stopGameplayMusic() {

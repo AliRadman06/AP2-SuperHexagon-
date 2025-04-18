@@ -20,7 +20,6 @@
         <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="412.0" layoutY="-1.0" prefHeight="576.0" prefWidth="233.0" style="-fx-background: transparent; -fx-background-color: transparent; -fx-background-radius: 30;">
             <content>
                 <VBox fx:id="historyContainer" spacing="15" style="-fx-padding: 20;">
-                    <!-- آیتم‌های تاریخچه اینجا به صورت داینامیک اضافه می‌شوند -->
                 </VBox>
             </content>
         </ScrollPane>

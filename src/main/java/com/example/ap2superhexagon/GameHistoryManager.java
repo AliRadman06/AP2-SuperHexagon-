@@ -19,7 +19,6 @@ public class GameHistoryManager {
     private static Preferences prefs = Preferences.userNodeForPackage(GameHistoryManager.class);
     private static boolean saveHistoryEnabled = true;
 
-    // کلاس داخلی برای ذخیره اطلاعات یک بازی
     public static class GameRecord {
         private String playerName;
         private String dateTime;
@@ -31,43 +30,21 @@ public class GameHistoryManager {
             this.durationMillis = durationMillis;
         }
 
-        // Getter برای playerName
+
         public String getPlayerName() {
             return playerName;
         }
 
-        // Setter برای playerName
-        public void setPlayerName(String playerName) {
-            this.playerName = playerName;
-        }
-
-        // Getter برای dateTime
         public String getDateTime() {
             return dateTime;
         }
 
-        // Setter برای dateTime
-        public void setDateTime(String dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        // Getter برای durationMillis
-        public long getDurationMillis() {
-            return durationMillis;
-        }
-
-        // Setter برای durationMillis
-        public void setDurationMillis(long durationMillis) {
-            this.durationMillis = durationMillis;
-        }
-
-        // متد برای نمایش مدت زمان به‌صورت ثانیه
         public String getDuration() {
             return String.format("%.1f s", durationMillis / 1000.0);
         }
     }
 
-    // بارگذاری تاریخچه از فایل
+
     public static List<GameRecord> loadHistory() {
         try {
             if (!Files.exists(Path.of(FILE_PATH))) {
@@ -83,7 +60,6 @@ public class GameHistoryManager {
         }
     }
 
-    // ذخیره یک بازی جدید در تاریخچه
     public static void saveGameRecord(String playerName, long durationMillis) {
 
         if (!saveHistoryEnabled) {

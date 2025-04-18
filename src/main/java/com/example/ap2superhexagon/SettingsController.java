@@ -38,22 +38,14 @@ public class SettingsController {
         boolean enabled = historyToggle.isSelected();
         GameHistoryManager.setHistoryEnabled(enabled);
         updateToggleButtons();
-
-        // نمایش پیام وضعیت
-        System.out.println("Game history saving is now " + (enabled ? "ENABLED" : "DISABLED"));
     }
 
     @FXML
     void handleBackButton(ActionEvent event) {
         AudioManager.playClickSound();
-
-        // Save settings when exiting
         GameHistoryManager.saveSettings();
         AudioManager.saveSettings();
-
-        // Return to previous screen
         try {
-            System.out.println("Back button clicked!");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/main-menu-view.fxml"));
             Parent mainMenuRoot = fxmlLoader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -71,7 +63,6 @@ public class SettingsController {
         musicToggle.setText(musicToggle.isSelected() ? "ON" : "OFF");
         historyToggle.setText(historyToggle.isSelected() ? "ON" : "OFF");
 
-        // Visual feedback
         musicToggle.setStyle(musicToggle.isSelected() ?
                 "-fx-base: #00ff0d;" : "-fx-base: #ff1200;");
         historyToggle.setStyle(historyToggle.isSelected() ?

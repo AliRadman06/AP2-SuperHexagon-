@@ -11,11 +11,8 @@
 <AnchorPane prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap2superhexagon.GameController">
     <children>
 
-        <!-- Pane اصلی برای قرار دادن عناصر بازی (بازیکن، موانع و غیره) -->
         <Pane fx:id="gamePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <!-- موقعیت و اندازه gamePane رو میتونی دقیق‌تر تنظیم کنی -->
 
-        <!-- بخش امتیاز کاربر -->
         <Label fx:id="yourRecordLabel" text="Your Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="25.0">
             <font>
                 <Font name="Algerian" size="23.0" />
@@ -27,7 +24,6 @@
             </font>
         </Label>
 
-        <!-- بخش بهترین رکورد -->
         <Label fx:id="bestRecordLabel" text="Best Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0">
             <font>
                 <Font name="Algerian" size="23.0" />
@@ -39,7 +35,6 @@
             </font>
         </Label>
 
-        <!-- دکمه Pause -->
         <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#handlePauseButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="16.0">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">

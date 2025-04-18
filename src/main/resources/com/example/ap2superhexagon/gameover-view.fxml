@@ -9,41 +9,35 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="576.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ap2superhexagon.GameoverView">
    <children>
-      <!-- پس‌زمینه فریم قبلی -->
       <ImageView fx:id="backgroundImageView" fitHeight="576.0" fitWidth="1024.0" preserveRatio="false">
          <image>
             <Image url="@../../../Images/Untitled-4.png" />
          </image></ImageView>
 
-      <!-- عنوان گیم اور -->
       <Label alignment="CENTER" layoutY="28.0" prefHeight="208.0" prefWidth="1025.0" text="Game Over" textFill="RED">
          <font>
             <Font name="Algerian" size="83.0" />
          </font>
       </Label>
 
-      <!-- دکمه ری‌استارت -->
       <Button fx:id="restartbutton" layoutX="395.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleRestartButton" prefHeight="83.0" prefWidth="247.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="restart" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="40.0" />
          </font>
       </Button>
 
-      <!-- دکمه برگشت -->
       <Button fx:id="backtomenubutton" layoutX="392.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleBackToMenuButton" prefHeight="83.0" prefWidth="247.0" style="-fx-background-radius: 30; -fx-background-color: WHITE;" text="back" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="40.0" />
          </font>
       </Button>
 
-      <!-- لیبل رکورد -->
       <Label alignment="CENTER" layoutX="339.0" layoutY="201.0" prefHeight="74.0" prefWidth="276.0" text="record:" textFill="WHITE">
          <font>
             <Font name="Algerian" size="40.0" />
          </font>
       </Label>
 
-      <!-- مقدار رکورد -->
       <Label fx:id="recordlable" layoutX="563.0" layoutY="201.0" prefHeight="74.0" prefWidth="276.0" textFill="RED">
          <font>
             <Font name="Algerian" size="40.0" />

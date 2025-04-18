@@ -35,13 +35,10 @@ public class GameoverView {
     @FXML
     private AnchorPane rootPane;
 
-    // این متد توسط GameController صدا زده میشه برای ست کردن بک‌گراند
+
     public void setBackgroundImage() {
-        // قرار دادن تصویر به عنوان پس‌زمینه
         Image image = new Image(getClass().getResource("/Images/Untitled-4.png").toExternalForm());
         backgroundImageView.setImage(image);
-
-        // اعمال افکت blur
         BoxBlur blur = new BoxBlur(15, 15, 3);
         backgroundImageView.setEffect(blur);
     }
@@ -65,8 +62,6 @@ public class GameoverView {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/PreGameSetup.fxml"));
             Parent root = loader.load();
-
-            // برگرداندن به منوی اصلی
             Stage stage = (Stage) backtomenubutton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -79,8 +74,6 @@ public class GameoverView {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/main-menu-view.fxml"));
             Parent root = loader.load();
-
-            // برگرداندن به منوی اصلی
             Stage stage = (Stage) backtomenubutton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

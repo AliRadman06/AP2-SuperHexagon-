@@ -2,7 +2,6 @@ package com.example.ap2superhexagon;
 
 import javafx.animation.AnimationTimer;
 
-import java.util.Locale;
 import java.util.function.Consumer;
 
 public class GameLoop{

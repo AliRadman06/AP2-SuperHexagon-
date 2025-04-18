@@ -45,7 +45,7 @@ public class HistoryController {
         }
 
         for (GameHistoryManager.GameRecord record : history) {
-            // ایجاد مستطیل برای هر رکورد
+
             Pane recordPane = new Pane();
             recordPane.setStyle(
                     "-fx-background-color: rgba(255, 255, 255, 0.2);" +
@@ -56,10 +56,10 @@ public class HistoryController {
             );
             recordPane.setPrefSize(460, 80);
 
-            // محتوای رکورد
+
             VBox contentBox = new VBox(5);
 
-            contentBox.setAlignment(Pos.CENTER); // این خط محتوا را در وسط قرار می‌دهد
+            contentBox.setAlignment(Pos.CENTER);
 
             contentBox.setLayoutX(15);
             contentBox.setLayoutY(10);

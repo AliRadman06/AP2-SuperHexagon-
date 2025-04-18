@@ -20,25 +20,15 @@ public class MainMenuController {
     @FXML private Button exitButton;
     @FXML private Label bestRecordLabel;
 
-    // این متد وقتی فایل FXML لود میشه صدا زده میشه
     @FXML
     public void initialize() {
 
         AudioManager.playMenuTheme();
-
-//        // اینجا میتونی مقدار اولیه bestRecordLabel رو از فایل یا جای دیگه بخونی و ست کنی
-//        long currentHighScore = loadHighScore(); // متد فرضی
-//        bestRecordLabel.setText(String.valueOf(currentHighScore));
-
         long bestMillis = HighScoreManager.loadHighScore();
         bestRecordLabel.setText(String.format("%.1f", bestMillis / 1000.0) + " s");
-
-
         SceneManager.setMainMenuScene(startButton.getScene());
         AudioManager.loadSettings();
         GameHistoryManager.loadSettings();
-
-
     }
 
     @FXML
@@ -59,7 +49,7 @@ public class MainMenuController {
             System.err.println("Failed to load PreGameSetup.fxml");
             e.printStackTrace();
         }
-        // کد رفتن به صفحه بازی
+
     }
 
     @FXML
