@@ -24,17 +24,6 @@
             </font>
         </Label>
 
-        <Label fx:id="bestRecordLabel" text="Best Record" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0">
-            <font>
-                <Font name="Algerian" size="23.0" />
-            </font>
-        </Label>
-        <Label fx:id="bestScoreLabel" alignment="CENTER" prefWidth="150.0" text="0" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="25.0">
-            <font>
-                <Font name="Algerian" size="23.0" />
-            </font>
-        </Label>
-
         <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#handlePauseButton" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="16.0">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">

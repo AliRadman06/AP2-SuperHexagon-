@@ -22,23 +22,22 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameController {
+
     @FXML
     private Pane gamePane;
     @FXML
     private Label scoreLabel;
     @FXML
-    private Label bestScoreLabel;
-    @FXML
     private Button pauseButton;
     @FXML
-    private Label bestRecordLabel;
-    @FXML
     private Label yourRecordLabel;
+
     private List<ObstacleWave> activeWaves;
     private Random randomGenerator;
     private double obstacleSpawnTimer;
@@ -54,6 +53,7 @@ public class GameController {
     private GameLoop gameLoop;
     private long lastPaletteSwitchTime = 0;
     private final long paletteSwitchInterval = Constants.PALETTE_SWITCH_INTERVAL_SECONDS ;
+
     private final List<int[]> predefinedPatterns = List.of(
             new int[]{1,0,1,1,0,1},
             new int[]{1,1,0,1,1,0},
@@ -66,11 +66,15 @@ public class GameController {
             new int[]{1,1,1,1,1,0}
     );
     private double timeSinceGameStart = 0.0;
+    private long gameStartTime;
+    private AnimationTimer timer;
+
     @FXML
     public void initialize() {
         AudioManager.playGameTheme();
-        scoreLabel.setText("0");
+        scoreLabel.setText("0.0");
         currentPlayerSide = 0;
+        gameStartTime = System.currentTimeMillis();
         this.activeWaves = new ArrayList<>();
         this.randomGenerator = new Random();
         this.obstacleSpawnTimer = this.obstacleSpawnInterval;
@@ -92,6 +96,21 @@ public class GameController {
         gamePane.setFocusTraversable(true);
         gamePane.setOnKeyPressed(this::handleKeyPress);
         gameLoop.start();
+        setupTimer();
+
+    }
+
+
+    private void setupTimer() {
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                long elapsedMillis = System.currentTimeMillis() - gameStartTime;
+                double seconds = elapsedMillis / 1000.0;
+                scoreLabel.setText(String.format("%.1f", seconds));
+            }
+        };
+        timer.start();
     }
 
     private void update (long now) {
@@ -156,11 +175,12 @@ public class GameController {
         if (!gameOver && checkCollisionWithWalls()) {
             gameOver = true;
             AudioManager.stopGameplayMusic();
-
             AudioManager.playGameOver();
+            long elapsedMillis = System.currentTimeMillis() - gameStartTime;
+            HighScoreManager.saveIfNewHighScore(currentPlayerName, elapsedMillis);
             stopGame();
 
-            long elapsedMillis = (long)(timeSinceGameStart * 1000);
+//            elapsedMillis = (long)(timeSinceGameStart * 1000);
             HighScoreManager.saveIfNewHighScore(currentPlayerName, elapsedMillis);
             if (GameHistoryManager.isHistoryEnabled()) {
                 GameHistoryManager.saveGameRecord(currentPlayerName, elapsedMillis);
@@ -176,8 +196,6 @@ public class GameController {
                 pauseButton.setVisible(false);
                 yourRecordLabel.setVisible(false);
                 scoreLabel.setVisible(false);
-                bestRecordLabel.setVisible(false);
-                bestScoreLabel.setVisible(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -312,6 +330,9 @@ public class GameController {
     public void stopGame() {
         if (gameLoop != null && gameLoop.isRunning()) {
             gameLoop.stop();
+        }
+        if (timer != null) {
+            timer.stop();
         }
     }
 
