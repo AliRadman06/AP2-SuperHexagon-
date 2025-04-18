@@ -48,7 +48,7 @@ public class GameoverView {
 
 
 
-    public void setFinalScore(long milliseconds) {
+    public void setFinalScore(String playerName, long milliseconds) {
         recordlable.setText(String.format("%.1f s", milliseconds / 1000.0));
     }
 
@@ -63,9 +63,11 @@ public class GameoverView {
     @FXML
     private void handleRestartButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/Game.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/PreGameSetup.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) restartbutton.getScene().getWindow();
+
+            // برگرداندن به منوی اصلی
+            Stage stage = (Stage) backtomenubutton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

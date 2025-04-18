@@ -19,6 +19,9 @@ public class MainApplication extends Application {
                 return;
             }
 
+            GameHistoryManager.loadSettings();
+            AudioManager.loadSettings();
+
             FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
             Parent root = fxmlLoader.load();
 

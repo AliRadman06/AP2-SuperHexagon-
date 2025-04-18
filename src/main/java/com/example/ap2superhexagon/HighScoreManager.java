@@ -12,7 +12,7 @@ public class HighScoreManager {
 
     // کلاس داخلی برای ذخیره رکورد
     private static class HighScore {
-        long bestMillis;  // زمان رکورد به میلی‌ثانیه
+        public long bestMillis;  // زمان رکورد به میلی‌ثانیه
     }
 
     // بارگذاری رکورد از فایل
@@ -30,7 +30,7 @@ public class HighScoreManager {
     }
 
     // ذخیره رکورد جدید در صورتی که رکورد جدید بزرگتر از رکورد قبلی باشد
-    public static void saveIfNewHighScore(long newScoreMillis) {
+    public static void saveIfNewHighScore(String playerName, long newScoreMillis) {
         long current = loadHighScore();  // رکورد فعلی رو بارگذاری می‌کنیم
         if (newScoreMillis > current) {  // اگر رکورد جدید بزرگتر بود، اون رو ذخیره می‌کنیم
             try {

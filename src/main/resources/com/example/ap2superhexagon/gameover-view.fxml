@@ -23,7 +23,7 @@
       </Label>
 
       <!-- دکمه ری‌استارت -->
-      <Button fx:id="restartbutton" layoutX="395.0" layoutY="298.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="247.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="restart" textAlignment="CENTER">
+      <Button fx:id="restartbutton" layoutX="395.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleRestartButton" prefHeight="83.0" prefWidth="247.0" style="-fx-background-radius: 30; -fx-background-color: white;" text="restart" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="40.0" />
          </font>

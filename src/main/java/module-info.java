@@ -12,7 +12,9 @@ module com.example.ap2superhexagon {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires com.google.gson;
+    requires javafx.media;
+    requires java.prefs;
 
-    opens com.example.ap2superhexagon to javafx.fxml;
+    opens com.example.ap2superhexagon to javafx.fxml, com.google.gson;
     exports com.example.ap2superhexagon;
 }

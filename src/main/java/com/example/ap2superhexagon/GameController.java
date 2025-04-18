@@ -63,6 +63,8 @@ public class GameController {
     private GameLoop gameLoop;
     private long lastPaletteSwitchTime = 0;
     private final long paletteSwitchInterval = Constants.PALETTE_SWITCH_INTERVAL_SECONDS ;
+//    private PreGameSetupController preGameSetupController = new PreGameSetupController();
+
 
     private final List<int[]> predefinedPatterns = List.of(
             new int[]{1,0,1,1,0,1},
@@ -82,6 +84,8 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        AudioManager.playGameTheme(); // شروع موزیک گیم‌پلی
+
         // اینجا میتونی کارهای اولیه رو انجام بدی، مثلا مقدار اولیه امتیازها رو ست کنی
 //        System.out.println("GameController initialized!");
         scoreLabel.setText("0"); // مقدار اولیه امتیاز
@@ -208,22 +212,25 @@ public class GameController {
 
         if (!gameOver && checkCollisionWithWalls()) {
             gameOver = true;
+            AudioManager.stopGameplayMusic();
+
+            AudioManager.playGameOver();
             stopGame();
 
             long elapsedMillis = (long)(timeSinceGameStart * 1000);
-            HighScoreManager.saveIfNewHighScore(elapsedMillis);
+            HighScoreManager.saveIfNewHighScore(currentPlayerName, elapsedMillis);
+            if (GameHistoryManager.isHistoryEnabled()) {
+                GameHistoryManager.saveGameRecord(currentPlayerName, elapsedMillis);
+            }
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/gameover-view.fxml"));
                 Parent overlay = loader.load();
 
-                // ارسال تصویر به گیم‌اور
                 GameoverView controller = loader.getController();
-                controller.setBackgroundImage();  // اینجا فقط تصویر ثابت تنظیم میشه
-                controller.setFinalScore(elapsedMillis);
+                controller.setBackgroundImage();
+                controller.setFinalScore(currentPlayerName, elapsedMillis);
 
-
-                // اضافه کردن لایه گیم‌اور به پنل بازی
                 gamePane.getChildren().add(overlay);
 
                 pauseButton.setVisible(false);
@@ -231,16 +238,10 @@ public class GameController {
                 scoreLabel.setVisible(false);
                 bestRecordLabel.setVisible(false);
                 bestScoreLabel.setVisible(false);
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-
-
-
 
     }
 
@@ -315,10 +316,12 @@ public class GameController {
 
         if (!gameOver) {  // 🔒 فقط در صورتی که بازی در حال اجراست، مثلث بچرخه
             if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.A) {
+                AudioManager.playRotateSound();
                 currentPlayerSide = (currentPlayerSide - 1 + Constants.SIDES) % Constants.SIDES;
                 moved = true;
             }
             else if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
+                AudioManager.playRotateSound();
                 currentPlayerSide = (currentPlayerSide + 1) % Constants.SIDES;
                 moved = true;
             }
@@ -326,12 +329,6 @@ public class GameController {
             if (moved) {
                 updatePlayerTrianglePosition();
             }
-        }
-
-        // بقیه ورودی‌ها حتی بعد از گیم‌اور فعال بمونن
-        if (event.getCode() == KeyCode.SPACE) {
-            colorManager.nextPalette();
-            updateElementColors();
         }
     }
 
@@ -489,10 +486,8 @@ public class GameController {
         return false;
     }
 
-
-
-
-
-
+    public void setPlayerName(String playerName) {
+        this.currentPlayerName = playerName;
+    }
 
 }

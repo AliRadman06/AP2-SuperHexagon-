@@ -67,10 +67,12 @@ public class ColorManager {
     public ColorManager() {
         // لیست پالت‌هایی که می‌خواهیم استفاده کنیم
         palettes = Arrays.asList(
-                GRAY_PALETTE,
+
                 BLUE_PALETTE,
-                GREEN_PALETTE,
-                BLUE_PALETTE2
+                GRAY_PALETTE,
+                BLUE_PALETTE2,
+                GREEN_PALETTE
+
         );
         currentPaletteIndex = 0; // شروع با پالت اول
     }

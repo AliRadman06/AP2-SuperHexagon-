@@ -23,14 +23,14 @@ public class PreGameSetupController {
 
     @FXML
     public void initialize() {
-        // playerNameField.requestFocus(); // (فعلا کامنت شده)
-
+        AudioManager.playMenuTheme();
         System.out.println("PreGameSetupController initialized.");
     }
 
 
     @FXML
     void handleStartButton(ActionEvent event) {
+        AudioManager.playClickSound();
         String playerName = playerNameField.getText().trim();
 
         if (playerName.isEmpty()) {
@@ -42,6 +42,9 @@ public class PreGameSetupController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/game-view.fxml"));
                 Parent gameRoot = loader.load();
+                GameController gameController = loader.getController();
+                gameController.setPlayerName(playerName);
+
                 Scene gameScene = new Scene(gameRoot, 1024, 576);
                 String cssPath = getClass().getResource("/css/game-style.css").toExternalForm();
                 if (cssPath != null) {
@@ -63,6 +66,7 @@ public class PreGameSetupController {
 
     @FXML
     void handleBackButton(ActionEvent event) {
+        AudioManager.playClickSound();
         try {
             System.out.println("Back button clicked!");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/main-menu-view.fxml"));

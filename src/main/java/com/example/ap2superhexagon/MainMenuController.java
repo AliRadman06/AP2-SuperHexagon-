@@ -23,6 +23,9 @@ public class MainMenuController {
     // این متد وقتی فایل FXML لود میشه صدا زده میشه
     @FXML
     public void initialize() {
+
+        AudioManager.playMenuTheme();
+
 //        // اینجا میتونی مقدار اولیه bestRecordLabel رو از فایل یا جای دیگه بخونی و ست کنی
 //        long currentHighScore = loadHighScore(); // متد فرضی
 //        bestRecordLabel.setText(String.valueOf(currentHighScore));
@@ -30,11 +33,20 @@ public class MainMenuController {
         long bestMillis = HighScoreManager.loadHighScore();
         bestRecordLabel.setText(String.format("%.1f", bestMillis / 1000.0) + " s");
 
+
+        SceneManager.setMainMenuScene(startButton.getScene());
+        AudioManager.loadSettings();
+        GameHistoryManager.loadSettings();
+
+
     }
 
     @FXML
     void handleStartButton(ActionEvent event) {
-        System.out.println("Start button clicked!");
+
+        AudioManager.playClickSound();
+        AudioManager.playGameTheme();
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/PreGameSetup.fxml"));
             Parent perGameRoot = fxmlLoader.load();
@@ -52,26 +64,37 @@ public class MainMenuController {
 
     @FXML
     void handleHistoryButton(ActionEvent event) {
-        System.out.println("History button clicked!");
-        // کد رفتن به صفحه تاریخچه
+        AudioManager.playClickSound();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/history-view.fxml"));
+            Parent historyRoot = fxmlLoader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(historyRoot);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to load history-view.fxml");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void handleSettingButton(ActionEvent event) {
-        System.out.println("Setting button clicked!");
-        // کد رفتن به صفحه تنظیمات
+        AudioManager.playClickSound();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ap2superhexagon/settings-view.fxml"));
+            Scene settingsScene = new Scene(loader.load());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(settingsScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void handleExitButton(ActionEvent event) {
-        System.out.println("Exit button clicked!");
-        // کد خروج از برنامه
+        AudioManager.playClickSound();
         javafx.application.Platform.exit();
     }
 
-    private long loadHighScore() {
-        // فعلا یک مقدار ثابت برمیگردونیم
-        // بعدا باید کد خواندن از فایل رو اینجا بنویسی
-        return 0; // مثال
-    }
 }
