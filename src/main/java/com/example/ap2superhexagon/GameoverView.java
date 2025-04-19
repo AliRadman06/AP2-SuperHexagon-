@@ -36,6 +36,8 @@ public class GameoverView {
     private AnchorPane rootPane;
 
 
+
+
     public void setBackgroundImage() {
         Image image = new Image(getClass().getResource("/Images/Untitled-4.png").toExternalForm());
         backgroundImageView.setImage(image);
