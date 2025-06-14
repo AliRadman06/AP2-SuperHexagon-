@@ -179,9 +179,6 @@ public class GameController {
             long elapsedMillis = System.currentTimeMillis() - gameStartTime;
             HighScoreManager.saveIfNewHighScore(currentPlayerName, elapsedMillis);
             stopGame();
-
-//            elapsedMillis = (long)(timeSinceGameStart * 1000);
-            HighScoreManager.saveIfNewHighScore(currentPlayerName, elapsedMillis);
             if (GameHistoryManager.isHistoryEnabled()) {
                 GameHistoryManager.saveGameRecord(currentPlayerName, elapsedMillis);
             }
